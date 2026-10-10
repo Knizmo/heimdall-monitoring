@@ -1,9 +1,6 @@
 <div align="center">
 
-<!-- 📷 BANNER: put your logo or a banner at docs/screenshots/banner.png (recommended 1280×400) -->
-![Heimdall banner](docs/screenshots/banner.png)
-
-# Heimdall
+<img src="docs/screenshots/banner.png" width="220" alt="Heimdall logo">
 
 **Intelligent monitoring for a Docker infrastructure.**
 *It detects incidents, fixes them, explains them in plain language, and watches over itself.*
@@ -15,7 +12,7 @@
 ![RAG](https://img.shields.io/badge/RAG-bge--m3-F5A524?style=flat-square)
 ![LLM](https://img.shields.io/badge/LLM-Groq_·_gpt--oss--120b-6E44FF?style=flat-square)
 
-<img src="assistant-ia/static/pixel/heimdall_turnaround.gif" width="120" alt="Heimdall pixel-art mascot">
+<img src="docs/screenshots/mascot.gif" alt="Heimdall pixel-art mascot">
 
 </div>
 
@@ -77,10 +74,11 @@ Heimdall goes further. It is built as a stack of five layers on top of a Docker 
 
 ## Screenshots
 
-<!-- 📷 CHATBOT: put your chatbot screenshot at docs/screenshots/chat.png -->
-![Chat with Heimdall](docs/screenshots/chat.png)
-
-*Heimdall answering with live Zabbix data, next to the live sidebar of problems, containers and metrics.*
+<p align="center">
+  <img src="docs/screenshots/chat.png" width="800" alt="Chat with Heimdall">
+  <br>
+  <em>Heimdall answering with live Zabbix data, next to the live sidebar of problems, containers and metrics.</em>
+</p>
 
 ---
 
