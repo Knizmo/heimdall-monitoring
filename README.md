@@ -48,8 +48,6 @@ Heimdall goes further. It is built as a stack of five layers on top of a Docker 
 4. **Explain**: an AI assistant answers questions about the infrastructure in natural language, grounded in live data.
 5. **Watch itself**: Zabbix monitors the assistant's health and restarts it if it fails.
 
-<img align="right" src="docs/screenshots/mascot.gif" alt="Heimdall pixel-art mascot">
-
 > Heimdall is the guardian of the gods in Norse mythology, the one who sees everything. Here, he guards the infrastructure.
 
 ---
@@ -402,3 +400,11 @@ Real incidents met during the project, and what they taught:
 Observation internship project at **Banque Centrale Populaire, Centre Diouri** (Casablanca), within the supervision team of the Services Center. **3IIR program, EMSI**, academic year 2025 / 2026.
 
 **Author**: Kamal Ballage
+
+---
+
+<div align="center">
+  <img src="docs/screenshots/mascot.gif" alt="Heimdall pixel-art mascot">
+  <br>
+  <sub><em>Heimdall is watching.</em></sub>
+</div>
