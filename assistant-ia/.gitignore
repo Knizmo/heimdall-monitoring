@@ -1,0 +1,11 @@
+# Secrets — JAMAIS dans Git
+.env
+
+# Environnement Python
+venv/
+__pycache__/
+*.pyc
+
+# Fichiers système
+.DS_Store
+*.swp

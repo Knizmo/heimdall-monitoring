@@ -1,0 +1,41 @@
+{
+  "games": [
+    { "id": 1, "titre": "Elden Ring", "studio": "FromSoftware", "annee": 2022, "genre": "Action-RPG", "note": 96, "plateforme": "Multi" },
+    { "id": 2, "titre": "The Witcher 3", "studio": "CD Projekt Red", "annee": 2015, "genre": "RPG", "note": 93, "plateforme": "Multi" },
+    { "id": 3, "titre": "Dark Souls", "studio": "FromSoftware", "annee": 2011, "genre": "Action-RPG", "note": 89, "plateforme": "Multi" },
+    { "id": 4, "titre": "God of War", "studio": "Santa Monica", "annee": 2018, "genre": "Action", "note": 94, "plateforme": "PlayStation" },
+    { "id": 5, "titre": "Red Dead Redemption 2", "studio": "Rockstar", "annee": 2018, "genre": "Action-Aventure", "note": 97, "plateforme": "Multi" },
+    { "id": 6, "titre": "Zelda: BOTW", "studio": "Nintendo", "annee": 2017, "genre": "Aventure", "note": 97, "plateforme": "Switch" },
+    { "id": 7, "titre": "Cyberpunk 2077", "studio": "CD Projekt Red", "annee": 2020, "genre": "RPG", "note": 86, "plateforme": "Multi" },
+    { "id": 8, "titre": "Hollow Knight", "studio": "Team Cherry", "annee": 2017, "genre": "Metroidvania", "note": 90, "plateforme": "Multi" },
+    { "id": 9, "titre": "Sekiro", "studio": "FromSoftware", "annee": 2019, "genre": "Action", "note": 90, "plateforme": "Multi" },
+    { "id": 10, "titre": "Bloodborne", "studio": "FromSoftware", "annee": 2015, "genre": "Action-RPG", "note": 92, "plateforme": "PlayStation" },
+    { "id": 11, "titre": "GTA V", "studio": "Rockstar", "annee": 2013, "genre": "Action-Aventure", "note": 96, "plateforme": "Multi" },
+    { "id": 12, "titre": "Hades", "studio": "Supergiant", "annee": 2020, "genre": "Roguelike", "note": 93, "plateforme": "Multi" },
+    { "id": 13, "titre": "Baldur's Gate 3", "studio": "Larian", "annee": 2023, "genre": "RPG", "note": 96, "plateforme": "Multi" },
+    { "id": 14, "titre": "Minecraft", "studio": "Mojang", "annee": 2011, "genre": "Sandbox", "note": 93, "plateforme": "Multi" },
+    { "id": 15, "titre": "Portal 2", "studio": "Valve", "annee": 2011, "genre": "Puzzle", "note": 95, "plateforme": "Multi" }
+  ],
+  "studios": [
+    { "id": 1, "nom": "FromSoftware", "pays": "Japon", "fondation": 1986, "jeux_cultes": 5 },
+    { "id": 2, "nom": "CD Projekt Red", "pays": "Pologne", "fondation": 2002, "jeux_cultes": 2 },
+    { "id": 3, "nom": "Rockstar", "pays": "USA", "fondation": 1998, "jeux_cultes": 3 },
+    { "id": 4, "nom": "Nintendo", "pays": "Japon", "fondation": 1889, "jeux_cultes": 10 },
+    { "id": 5, "nom": "Valve", "pays": "USA", "fondation": 1996, "jeux_cultes": 4 },
+    { "id": 6, "nom": "Supergiant", "pays": "USA", "fondation": 2009, "jeux_cultes": 2 }
+  ],
+  "personnages": [
+    { "id": 1, "nom": "Geralt de Riv", "jeu": "The Witcher 3", "role": "protagoniste" },
+    { "id": 2, "nom": "Kratos", "jeu": "God of War", "role": "protagoniste" },
+    { "id": 3, "nom": "Arthur Morgan", "jeu": "Red Dead Redemption 2", "role": "protagoniste" },
+    { "id": 4, "nom": "Link", "jeu": "Zelda", "role": "héros" },
+    { "id": 5, "nom": "Solaire d'Astora", "jeu": "Dark Souls", "role": "PNJ" },
+    { "id": 6, "nom": "Zagreus", "jeu": "Hades", "role": "protagoniste" }
+  ],
+  "plateformes": [
+    { "id": 1, "nom": "PlayStation 5", "constructeur": "Sony", "annee": 2020 },
+    { "id": 2, "nom": "Xbox Series X", "constructeur": "Microsoft", "annee": 2020 },
+    { "id": 3, "nom": "Nintendo Switch", "constructeur": "Nintendo", "annee": 2017 },
+    { "id": 4, "nom": "PC", "constructeur": "Divers", "annee": 1980 }
+  ]
+}

@@ -1,0 +1,174 @@
+[
+  {
+    "actionid": "7",
+    "name": "Auto-remediation : redemarre un conteneur Docker arrete",
+    "eventsource": "0",
+    "status": "0",
+    "esc_period": "1h",
+    "pause_suppressed": "1",
+    "notify_if_canceled": "1",
+    "pause_symptoms": "1",
+    "filter": {
+      "evaltype": "0",
+      "formula": "",
+      "eval_formula": "A",
+      "conditions": [
+        {
+          "conditiontype": "3",
+          "operator": "2",
+          "value": "n'est plus actif",
+          "value2": "",
+          "formulaid": "A"
+        }
+      ]
+    },
+    "operations": [
+      {
+        "operationid": "11",
+        "actionid": "7",
+        "operationtype": "1",
+        "esc_period": "0",
+        "esc_step_from": "1",
+        "esc_step_to": "1",
+        "evaltype": "0",
+        "opconditions": [],
+        "opcommand": {
+          "scriptid": "4"
+        },
+        "opcommand_hst": [
+          {
+            "opcommand_hstid": "1",
+            "hostid": "0"
+          }
+        ],
+        "opcommand_grp": []
+      }
+    ],
+    "recovery_operations": [
+      {
+        "operationid": "12",
+        "actionid": "7",
+        "operationtype": "0",
+        "evaltype": "0",
+        "opconditions": [],
+        "opmessage": {
+          "default_msg": "0",
+          "subject": "✅ Conteneur redemarre automatiquement : {EVENT.NAME}",
+          "message": "<h3 style=\"color:#16a34a\">✅ Conteneur redémarré automatiquement</h3>\r\n<p><b>Hôte :</b> {HOST.NAME}<br>\r\n<b>Problème :</b> {EVENT.NAME}<br>\r\n<b>Détecté à :</b> {EVENT.DATE} {EVENT.TIME}<br>\r\n<b>Résolu à :</b> {EVENT.RECOVERY.DATE} {EVENT.RECOVERY.TIME}<br>\r\n<b>Durée :</b> {EVENT.DURATION}</p>\r\n<p><i>Action exécutée : docker start via script auto-remédiation</i></p>",
+          "mediatypeid": "73"
+        },
+        "opmessage_grp": [],
+        "opmessage_usr": [
+          {
+            "userid": "1"
+          }
+        ]
+      },
+      {
+        "operationid": "13",
+        "actionid": "7",
+        "operationtype": "0",
+        "evaltype": "0",
+        "opconditions": [],
+        "opmessage": {
+          "default_msg": "0",
+          "subject": "✅ Conteneur redemarre automatiquement : {EVENT.NAME}",
+          "message": "Le conteneur est revenu en ligne apres une auto-remediation.\r\n\r\nHote : {HOST.NAME}\r\nProbleme : {EVENT.NAME}\r\nDetecte a : {EVENT.DATE} {EVENT.TIME}\r\nResolu a : {EVENT.RECOVERY.DATE} {EVENT.RECOVERY.TIME}\r\nDuree du probleme : {EVENT.DURATION}\r\n\r\nAction executee : docker start via script auto-remediation",
+          "mediatypeid": "72"
+        },
+        "opmessage_grp": [],
+        "opmessage_usr": [
+          {
+            "userid": "1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "actionid": "8",
+    "name": "Flask health failure → remédiation + notif",
+    "eventsource": "0",
+    "status": "0",
+    "esc_period": "1h",
+    "pause_suppressed": "1",
+    "notify_if_canceled": "1",
+    "pause_symptoms": "1",
+    "filter": {
+      "evaltype": "0",
+      "formula": "",
+      "eval_formula": "A",
+      "conditions": [
+        {
+          "conditiontype": "3",
+          "operator": "2",
+          "value": "Flask Heimdall",
+          "value2": "",
+          "formulaid": "A"
+        }
+      ]
+    },
+    "operations": [
+      {
+        "operationid": "14",
+        "actionid": "8",
+        "operationtype": "1",
+        "esc_period": "0",
+        "esc_step_from": "1",
+        "esc_step_to": "1",
+        "evaltype": "0",
+        "opconditions": [],
+        "opcommand": {
+          "scriptid": "5"
+        },
+        "opcommand_hst": [
+          {
+            "opcommand_hstid": "2",
+            "hostid": "0"
+          }
+        ],
+        "opcommand_grp": []
+      }
+    ],
+    "recovery_operations": [
+      {
+        "operationid": "15",
+        "actionid": "8",
+        "operationtype": "0",
+        "evaltype": "0",
+        "opconditions": [],
+        "opmessage": {
+          "default_msg": "0",
+          "subject": "[RECOVERY] Flask Heimdall opérationnel",
+          "message": "✅ Flask Heimdall opérationnel\r\n\r\nHôte : {HOST.NAME}\r\nTrigger : {TRIGGER.NAME}\r\nSévérité : {TRIGGER.SEVERITY}\r\nRésolu le : {EVENT.RECOVERY.DATE} à {EVENT.RECOVERY.TIME}\r\nDurée de l'incident : {EVENT.AGE}\r\n\r\nL'auto-remédiation a redémarré Flask avec succès.",
+          "mediatypeid": "72"
+        },
+        "opmessage_grp": [],
+        "opmessage_usr": [
+          {
+            "userid": "1"
+          }
+        ]
+      },
+      {
+        "operationid": "16",
+        "actionid": "8",
+        "operationtype": "0",
+        "evaltype": "0",
+        "opconditions": [],
+        "opmessage": {
+          "default_msg": "0",
+          "subject": "[RECOVERY] Flask Heimdall opérationnel",
+          "message": "<div style=\"border-left: 5px solid #28a745; padding: 15px; background: #f0f9f4; font-family: Arial, sans-serif;\">\r\n  <h2 style=\"color: #28a745; margin-top: 0;\">✅ Flask Heimdall opérationnel</h2>\r\n  <p><b>Hôte :</b> {HOST.NAME}<br>\r\n  <b>Trigger :</b> {TRIGGER.NAME}<br>\r\n  <b>Sévérité :</b> {TRIGGER.SEVERITY}<br>\r\n  <b>Résolu le :</b> {EVENT.RECOVERY.DATE} à {EVENT.RECOVERY.TIME}<br>\r\n  <b>Durée de l'incident :</b> {EVENT.AGE}</p>\r\n  <p style=\"color: #555;\">L'auto-remédiation a redémarré Flask avec succès.</p>\r\n</div>",
+          "mediatypeid": "73"
+        },
+        "opmessage_grp": [],
+        "opmessage_usr": [
+          {
+            "userid": "1"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,164 @@
+zabbix_export:
+  version: '7.0'
+  host_groups:
+    - uuid: 6f6799aa69e844b4b3918f779f2abf08
+      name: 'Zabbix servers'
+  hosts:
+    - host: 'Zabbix server'
+      name: 'Zabbix server'
+      templates:
+        - name: 'Docker by Zabbix agent 2'
+        - name: 'Linux by Zabbix agent'
+        - name: 'PostgreSQL by Zabbix agent 2'
+        - name: 'Zabbix server health'
+      groups:
+        - name: 'Zabbix servers'
+      interfaces:
+        - interface_ref: if1
+      items:
+        - name: 'PostgreSQL: Games count'
+          key: pgsql.custom.games_count
+          interface_ref: if1
+          tags:
+            - tag: target
+              value: postgres_custom
+        - name: 'PostgreSQL: Personnages count'
+          key: pgsql.custom.personnages_count
+          interface_ref: if1
+          tags:
+            - tag: target
+              value: postgres_custom
+        - name: 'PostgreSQL: Plateformes count'
+          key: pgsql.custom.plateformes_count
+          interface_ref: if1
+          tags:
+            - tag: target
+              value: postgres_custom
+        - name: 'PostgreSQL: Studios count'
+          key: pgsql.custom.studios_count
+          interface_ref: if1
+          tags:
+            - tag: target
+              value: postgres_custom
+        - name: 'PostgreSQL: Number of tables'
+          key: pgsql.custom.tables_count
+          interface_ref: if1
+          tags:
+            - tag: target
+              value: postgres_custom
+        - name: 'Java MonApp - CPU'
+          key: 'proc.cpu.util[java,,,MonApp]'
+          delay: 30s
+          value_type: FLOAT
+          units: '%'
+          interface_ref: if1
+        - name: 'Java MonApp - memoire'
+          key: 'proc.mem[java,,,MonApp,rss]'
+          delay: 30s
+          units: B
+          interface_ref: if1
+        - name: 'Java MonApp -  virtual memoire'
+          key: 'proc.mem[java,,,MonApp]'
+          delay: 30s
+          units: B
+          interface_ref: if1
+        - name: 'Java MonApp - processus actif'
+          key: 'proc.num[java,,,MonApp]'
+          delay: 30s
+          interface_ref: if1
+        - name: 'Contenu - zabbixTest.txt'
+          key: 'vfs.file.contents[{$FILE.PATH}]'
+          value_type: TEXT
+          trends: '0'
+          interface_ref: if1
+        - name: 'Existence - zabbixTest.txt'
+          key: 'vfs.file.exists[{$FILE.PATH}]'
+          interface_ref: if1
+          triggers:
+            - expression: 'last(/Zabbix server/vfs.file.exists[{$FILE.PATH}])=0'
+              name: '{HOST.NAME}: zabbixTest.txt a été supprimé'
+              priority: WARNING
+        - name: 'Taille - zabbixTest.txt'
+          key: 'vfs.file.size[{$FILE.PATH}]'
+          units: B
+          interface_ref: if1
+          triggers:
+            - expression: 'last(/Zabbix server/vfs.file.size[{$FILE.PATH}])=0'
+              name: '{HOST.NAME}: zabbixTest.txt est vide'
+              priority: WARNING
+            - expression: |
+                change(/Zabbix server/vfs.file.size[{$FILE.PATH}])>100K and
+                avg(/Zabbix server/vfs.file.size[{$FILE.PATH}],10m)>0
+              name: '{HOST.NAME}: zabbixTest.txt grossit anormalement vite ({ITEM.LASTVALUE})'
+              priority: WARNING
+            - expression: 'last(/Zabbix server/vfs.file.size[{$FILE.PATH}])>{$FILE.SIZE.MAX}'
+              name: '{HOST.NAME}: zabbixTest.txt trop volumineux ({ITEM.LASTVALUE})'
+              priority: WARNING
+        - name: 'Modification - zabbixTest.txt'
+          key: 'vfs.file.time[{$FILE.PATH},modify]'
+          units: unixtime
+          interface_ref: if1
+          triggers:
+            - expression: 'change(/Zabbix server/vfs.file.time[{$FILE.PATH},modify])>0'
+              name: '{HOST.NAME}: zabbixTest.txt a ete modifier'
+              priority: WARNING
+            - expression: 'fuzzytime(/Zabbix server/vfs.file.time[{$FILE.PATH},modify],{$FILE.NOCHANGE.TIME})=0'
+              name: '{HOST.NAME}: zabbixTest.txt non modifie depuis {$FILE.NOCHANGE.TIME}'
+              priority: WARNING
+      httptests:
+        - name: 'Flask Heimdall health'
+          attempts: '2'
+          steps:
+            - name: 'DB check'
+              url: 'http://localhost:5000/health/db'
+              follow_redirects: 'NO'
+              timeout: 10s
+              status_codes: '200'
+            - name: 'Ollama check'
+              url: 'http://localhost:5000/health/ollama'
+              follow_redirects: 'NO'
+              timeout: 10s
+              status_codes: '200'
+            - name: 'Groq check'
+              url: 'http://localhost:5000/health/groq'
+              follow_redirects: 'NO'
+              timeout: 10s
+              status_codes: '200'
+            - name: 'Zabbix check'
+              url: 'http://localhost:5000/health/zabbix'
+              follow_redirects: 'NO'
+              timeout: 10s
+              status_codes: '200'
+      macros:
+        - macro: '{$FILE.NOCHANGE.TIME}'
+          value: 1h
+        - macro: '{$FILE.PATH}'
+          value: /home/itach/Zabbix/zabbixTest.txt
+        - macro: '{$FILE.SIZE.MAX}'
+          value: 1M
+        - macro: '{$FILE.SIZE.RECOVER}'
+          value: 800K
+        - macro: '{$PG.DATABASE}'
+          value: postgres
+        - macro: '{$PG.DB}'
+          value: zabbix
+        - macro: '{$PG.HOST}'
+          value: localhost
+        - macro: '{$PG.PASSWORD}'
+          type: SECRET_TEXT
+        - macro: '{$PG.PORT}'
+          value: '5432'
+        - macro: '{$PG.URI}'
+          value: 'tcp://localhost:5433'
+        - macro: '{$PG.USER}'
+          value: zbx_monitor
+      inventory:
+        name: DESKTOP-G5B6R19
+        os: 'Linux version 5.15.167.4-microsoft-standard-WSL2 (root@f9c826d3017f) (gcc (GCC) 11.2.0, GNU ld (GNU Binutils) 2.37) #1 SMP Tue N'
+        location_lat: '56.97612'
+        location_lon: '24.16553'
+      inventory_mode: AUTOMATIC
+  triggers:
+    - expression: 'last(/Zabbix server/web.test.fail[Flask Heimdall health])>0'
+      name: 'Flask Heimdall : health check en échec ({ITEM.VALUE})'
+      priority: HIGH
