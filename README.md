@@ -12,8 +12,6 @@
 ![RAG](https://img.shields.io/badge/RAG-bge--m3-F5A524?style=flat-square)
 ![LLM](https://img.shields.io/badge/LLM-Groq_·_gpt--oss--120b-6E44FF?style=flat-square)
 
-<img src="docs/screenshots/mascot.gif" alt="Heimdall pixel-art mascot">
-
 </div>
 
 ---
@@ -50,25 +48,27 @@ Heimdall goes further. It is built as a stack of five layers on top of a Docker 
 4. **Explain**: an AI assistant answers questions about the infrastructure in natural language, grounded in live data.
 5. **Watch itself**: Zabbix monitors the assistant's health and restarts it if it fails.
 
+<img align="right" src="docs/screenshots/mascot.gif" alt="Heimdall pixel-art mascot">
+
 > Heimdall is the guardian of the gods in Norse mythology, the one who sees everything. Here, he guards the infrastructure.
 
 ---
 
 ## What makes it special
 
-**🔁 A monitoring loop that closes on itself.** Layer 5 monitors the assistant from layer 4. Ask Heimdall *"how are you monitored?"* and it describes its own supervision, because that documentation is part of its knowledge base.
+**▸ A monitoring loop that closes on itself.** Layer 5 monitors the assistant from layer 4. Ask Heimdall *"how are you monitored?"* and it describes its own supervision, because that documentation is part of its knowledge base.
 
-**🧠 Two separate sources of truth.** The assistant never guesses the state of the system. *How things work* comes from the project documentation (RAG). *What is happening right now* comes from the Zabbix API, live. This split keeps it from inventing incidents that don't exist.
+**▸ Two separate sources of truth.** The assistant never guesses the state of the system. *How things work* comes from the project documentation (RAG). *What is happening right now* comes from the Zabbix API, live. This split keeps it from inventing incidents that don't exist.
 
-**🔒 Embeddings stay local.** Documents are vectorised by `bge-m3` running on Ollama on the machine itself. The documentation is never sent to a third party for indexing; only the final prompt goes to the LLM.
+**▸ Embeddings stay local.** Documents are vectorised by `bge-m3` running on Ollama on the machine itself. The documentation is never sent to a third party for indexing; only the final prompt goes to the LLM.
 
-**🔄 Model-agnostic by design.** The LLM is set by one environment variable (`CHAT_MODEL`). When Groq retired `llama-3.3-70b-versatile` in August 2026, the switch to `openai/gpt-oss-120b` took a one-line change and zero code changes.
+**▸ Model-agnostic by design.** The LLM is set by one environment variable (`CHAT_MODEL`). When Groq retired `llama-3.3-70b-versatile` in August 2026, the switch to `openai/gpt-oss-120b` took a one-line change and zero code changes.
 
-**🧪 Every layer is testable on its own.** Each layer was built, tested, and validated before the next one started. A failure can be traced to a single layer.
+**▸ Every layer is testable on its own.** Each layer was built, tested, and validated before the next one started. A failure can be traced to a single layer.
 
-**🛑 A shutdown that doesn't fight its own self-healing.** `stop-session.sh` stops Zabbix *first*, so the remediation can't restart the very services you are shutting down.
+**▸ A shutdown that doesn't fight its own self-healing.** `stop-session.sh` stops Zabbix *first*, so the remediation can't restart the very services you are shutting down.
 
-**🎮 A personal interface.** A web UI with a live sidebar, a monitoring view, a knowledge-base browser, chat history, and an animated pixel-art mascot you can rotate.
+**▸ A personal interface.** A web UI with a live sidebar, a monitoring view, a knowledge-base browser, chat history, and an animated pixel-art mascot you can rotate.
 
 ---
 
@@ -353,8 +353,8 @@ sudo tail -f /var/log/syslog | grep zbx-flask-remediation
 | Metric | Target | Result |
 |---|---|---|
 | Assistant response time | < 5 s | ~4 s |
-| Incident detection | < 90 s | ✅ |
-| Container restart | < 2 min | ✅ |
+| Incident detection | < 90 s | Met |
+| Container restart | < 2 min | Met |
 
 ---
 
